@@ -1,0 +1,6 @@
+pievienot quiz pildisanu,
+nonemt piekluvi testu skatisanai un veidosanai user kontiem
+uzlabot dizainu, pievienot responsivu dizainu
+    * stils atseviski no layout header
+
+hostot vercel/railway (neobligati, pedejais)
