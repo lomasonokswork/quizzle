@@ -75,7 +75,7 @@ class QuestionController
         }
 
         include 'views/layout/header.php';
-        include 'views/quiz/view.php';
+        include 'views/quiz/add_question.php';
         include 'views/layout/footer.php';
     }
 
@@ -146,7 +146,7 @@ class QuestionController
         }
 
         include 'views/layout/header.php';
-        include 'views/quiz/view.php';
+        include 'views/quiz/edit_question.php';
         include 'views/layout/footer.php';
     }
 

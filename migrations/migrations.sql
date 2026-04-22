@@ -30,3 +30,15 @@ CREATE TABLE IF NOT EXISTS questions (
 );
 
 ALTER TABLE questions ADD COLUMN variant_4 VARCHAR(255) NOT NULL DEFAULT '' AFTER variant_3;
+
+CREATE TABLE IF NOT EXISTS quiz_results (
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    quiz_id INT NOT NULL,
+    score INT NOT NULL,
+    correct_answers INT NOT NULL,
+    total_questions INT NOT NULL,
+    attempted_at DATETIME NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (quiz_id) REFERENCES quizzes(id)
+);

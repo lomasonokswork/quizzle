@@ -6,23 +6,27 @@ require_once 'config/database.php';
 require_once 'models/User.php';
 require_once 'models/Quiz.php';
 require_once 'models/Question.php';
+require_once 'models/Result.php';
 
 require_once 'controllers/AuthController.php';
 require_once 'controllers/QuizController.php';
 require_once 'controllers/QuestionController.php';
 require_once 'controllers/UserController.php';
+require_once 'controllers/HomeController.php';
 
 $userModel = new User($pdo);
 $quizModel = new Quiz($pdo);
 $questionModel = new Question($pdo);
+$resultModel = new Result($pdo);
 
 $authController = new AuthController($userModel);
 $quizController = new QuizController($quizModel, $questionModel);
 $questionController = new QuestionController($questionModel, $quizModel);
 $userController = new UserController($userModel);
+$homeController = new HomeController($quizModel, $questionModel, $resultModel);
 
-$page = isset($_GET['page']) ? trim($_GET['page']) : 'quiz';
-$action = isset($_GET['action']) ? trim($_GET['action']) : 'list';
+$page = isset($_GET['page']) ? trim($_GET['page']) : 'home';
+$action = isset($_GET['action']) ? trim($_GET['action']) : 'index';
 
 $publicPages = ['login', 'register'];
 
@@ -75,8 +79,18 @@ try {
             header('Location: ?page=admin&action=users');
             exit;
         }
+    } elseif ($page === 'home') {
+        if ($action === 'play') {
+            $homeController->play();
+        } elseif ($action === 'submit') {
+            $homeController->submit();
+        } elseif ($action === 'result') {
+            $homeController->result();
+        } else {
+            $homeController->index();
+        }
     } else {
-        header('Location: ?page=quiz&action=list');
+        header('Location: ?page=home');
         exit;
     }
 } catch (Exception $e) {
