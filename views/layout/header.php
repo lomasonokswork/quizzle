@@ -23,7 +23,9 @@ if (empty($_SESSION['csrf_token'])) {
             </div>
             <div class="nav-middle">
                 <a href="?page=home">Home</a>
-                <a href="?page=quiz&action=list">Manage Quizzes</a>
+                <?php if (isset($_SESSION['permission_level']) && $_SESSION['permission_level'] === 'Admin'): ?>
+                    <a href="?page=quiz&action=list">Manage Quizzes</a>
+                <?php endif; ?>
             </div>
             <div class="nav-right">
                 <?php if (isset($_SESSION['user_id'])): ?>
