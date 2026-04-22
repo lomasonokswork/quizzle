@@ -9,15 +9,15 @@
         <?php foreach ($quizzes as $quiz): ?>
             <div class="quiz-card">
                 <h3><?php echo htmlspecialchars($quiz['title']); ?></h3>
-                <p class="quiz-meta">
-                    <small>Created by: <?php echo htmlspecialchars($quiz['username'] ?? 'Unknown'); ?></small><br>
-                    <small><?php echo date('M d, Y', strtotime($quiz['created_at'])); ?></small>
-                </p>
-                
+
                 <?php if (isset($userResultsByQuiz[$quiz['id']])): ?>
                     <div class="quiz-stats">
-                        <p class="score-badge">Last Score: <strong><?php echo $userResultsByQuiz[$quiz['id']]['score']; ?>%</strong></p>
-                        <p class="attempts-badge">Attempts: <strong><?php echo count(array_filter($userResults, function($r) use ($quiz) { return $r['quiz_id'] == $quiz['id']; })); ?></strong></p>
+                        <p class="score-badge">Last Score: <strong><?php echo $userResultsByQuiz[$quiz['id']]['score']; ?>%</strong>
+                        </p>
+                        <p class="attempts-badge">Attempts:
+                            <strong><?php echo count(array_filter($userResults, function ($r) use ($quiz) {
+                                return $r['quiz_id'] == $quiz['id']; })); ?></strong>
+                        </p>
                     </div>
                 <?php else: ?>
                     <div class="quiz-stats">
@@ -33,7 +33,7 @@
     </div>
 
     <div class="history-section">
-        <h2>Your Quiz History</h2>
+        <h2>Quiz History</h2>
         <?php if (empty($userResults)): ?>
             <p>You haven't attempted any quizzes yet. Start by playing one of the quizzes above!</p>
         <?php else: ?>

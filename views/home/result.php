@@ -65,7 +65,7 @@
                 <tbody>
                     <?php foreach ($leaderboard as $rank => $entry): ?>
                         <?php if ($entry['username']): ?>
-                            <tr <?php echo ($entry['user_id'] == $_SESSION['user_id']) ? 'class="current-user"' : ''; ?>>
+                            <tr <?php echo ($_SESSION['user_id']) ? 'class="current-user"' : ''; ?>>
                                 <td class="rank"><?php echo $rank + 1; ?></td>
                                 <td class="username"><?php echo htmlspecialchars($entry['username']); ?></td>
                                 <td class="best-score"><?php echo $entry['best_score'] ? number_format($entry['best_score'], 2) . '%' : '-'; ?></td>
