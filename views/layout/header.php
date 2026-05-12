@@ -2,6 +2,27 @@
 if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
+
+$currentPage = $_GET['page'] ?? 'home';
+$currentAction = $_GET['action'] ?? 'index';
+
+if (!function_exists('nav_active')) {
+    function nav_active($page, $action = null)
+    {
+        $currentPage = $_GET['page'] ?? 'home';
+        $currentAction = $_GET['action'] ?? 'index';
+
+        if ($currentPage !== $page) {
+            return '';
+        }
+
+        if ($action !== null && $currentAction !== $action) {
+            return '';
+        }
+
+        return ' active';
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,41 +30,48 @@ if (empty($_SESSION['csrf_token'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../public/style.css">
-    <link rel="stylesheet" href="../public/css/home-index.css">
-    <link rel="stylesheet" href="../public/css/home-play.css">
-    <link rel="stylesheet" href="../public/css/home-result.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="public/css/home-index.css">
+    <link rel="stylesheet" href="public/css/home-play.css">
+    <link rel="stylesheet" href="public/css/home-result.css">
     <title>Quizzle - Quiz Management System</title>
 </head>
 
 <body>
-    <header>
-        <nav>
-            <div class="logo"><a href="?page=home" style="color: white; text-decoration: none;">Quizzle</a>
+    <header class="site-header">
+        <nav class="site-nav" aria-label="Main navigation">
+            <div class="brand" aria-label="Quizzle">
+                <span class="brand-mark" aria-hidden="true">Q</span>
+                <span>Quizzle</span>
             </div>
-            <div class="nav-middle">
-                <a href="?page=home">Home</a>
-                <?php if (isset($_SESSION['permission_level']) && $_SESSION['permission_level'] === 'Admin'): ?>
-                    <a href="?page=quiz&action=list">Manage Quizzes</a>
-                <?php endif; ?>
-            </div>
-            <div class="nav-right">
-                <?php if (isset($_SESSION['user_id'])): ?>
-                    <div class="user-info">
+
+            <button class="nav-toggle" type="button" aria-controls="nav-menu" aria-expanded="false">
+                <span class="nav-toggle-lines" aria-hidden="true"></span>
+                <span class="sr-only">Toggle navigation</span>
+            </button>
+
+            <div class="nav-menu" id="nav-menu">
+                <div class="nav-links">
+                    <a class="<?php echo nav_active('home'); ?>" href="?page=home">Home</a>
+                    <?php if (isset($_SESSION['permission_level']) && $_SESSION['permission_level'] === 'Admin'): ?>
+                        <a class="<?php echo nav_active('quiz', 'list'); ?>" href="?page=quiz&action=list">Manage Quizzes</a>
+                    <?php endif; ?>
+                </div>
+
+                <div class="nav-actions">
+                    <?php if (isset($_SESSION['user_id'])): ?>
                         <?php if (isset($_SESSION['permission_level']) && $_SESSION['permission_level'] === 'Admin'): ?>
-                            <a href="?page=admin&action=users" style="font-weight: bold; color: #f1c40f;">Admin Panel</a>
+                            <a class="admin-link<?php echo nav_active('admin', 'users'); ?>" href="?page=admin&action=users">Admin Panel</a>
                         <?php endif; ?>
                         <a href="?page=logout">Logout</a>
-                    </div>
-                <?php else: ?>
-                    <div class="user-info">
-                        <a href="?page=login">Login</a>
-                        <a href="?page=register">Register</a>
-                    </div>
-                <?php endif; ?>
+                    <?php else: ?>
+                        <a class="<?php echo nav_active('login'); ?>" href="?page=login">Login</a>
+                        <a class="<?php echo nav_active('register'); ?>" href="?page=register">Register</a>
+                    <?php endif; ?>
+                </div>
             </div>
         </nav>
     </header>
 
-    <div class="container">
+    <main class="page-shell">
         <?php include 'common.php'; ?>

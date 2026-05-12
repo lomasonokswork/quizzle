@@ -1,21 +1,27 @@
-<h1 style="text-align: center; margin-bottom: 2rem;">Login</h1>
-
-<form method="POST">
-    <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
-
-    <div class="form-group">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
+<section class="form-page">
+    <div class="form-header">
+        <p class="card-kicker">Welcome back</p>
+        <h1>Login</h1>
+        <p>Sign in to continue your quizzes and track your results.</p>
     </div>
 
-    <div class="form-group">
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-    </div>
+    <form method="POST">
+        <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
 
-    <button type="submit">Login</button>
-</form>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" autocomplete="username" required>
+        </div>
 
-<p style="text-align: center; margin-top: 1rem;">
-    Don't have an account? <a href="?page=register">Register here</a>
-</p>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" autocomplete="current-password" required>
+        </div>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <p class="form-note">
+        Don't have an account? <a href="?page=register">Register here</a>
+    </p>
+</section>
