@@ -16,7 +16,8 @@
                         </p>
                         <p class="attempts-badge">Attempts:
                             <strong><?php echo count(array_filter($userResults, function ($r) use ($quiz) {
-                                return $r['quiz_id'] == $quiz['id']; })); ?></strong>
+                                return $r['quiz_id'] == $quiz['id'];
+                            })); ?></strong>
                         </p>
                     </div>
                 <?php else: ?>

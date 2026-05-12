@@ -80,3 +80,40 @@
 .quiz-actions a {
     min-width: 150px;
 }
+
+.progress-wrapper {
+    max-width: 800px;
+    margin: 10px auto 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.progress-label {
+    font-size: 0.95rem;
+    color: #444;
+    width: 70px;
+}
+
+.progress {
+    flex: 1;
+    height: 12px;
+    background: #eee;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.04);
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg,#27ae60,#2ecc71);
+    width: 0%;
+    transition: width 300ms ease;
+}
+
+.progress-text {
+    width: 70px;
+    text-align: right;
+    font-size: 0.95rem;
+    color: #444;
+}
