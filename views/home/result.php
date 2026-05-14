@@ -57,7 +57,6 @@ if ($score >= 80) {
     <section class="leaderboard-section" aria-labelledby="leaderboard-title">
         <p class="card-kicker">Top performers</p>
         <h2 id="leaderboard-title">Quiz Leaderboard</h2>
-        <p>Best and average scores for this quiz.</p>
 
         <?php if (empty($leaderboard)): ?>
             <div class="empty-state">
@@ -69,11 +68,10 @@ if ($score >= 80) {
                 <table class="leaderboard-table">
                     <thead>
                         <tr>
-                            <th>Rank</th>
+                            <th>#</th>
                             <th>User</th>
-                            <th>Best Score</th>
-                            <th>Average Score</th>
-                            <th>Attempts</th>
+                            <th>Score</th>
+                            <th>Tries</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -83,7 +81,6 @@ if ($score >= 80) {
                                     <td><?php echo $rank + 1; ?></td>
                                     <td><?php echo htmlspecialchars($entry['username']); ?></td>
                                     <td><?php echo $entry['best_score'] ? number_format($entry['best_score'], 2) . '%' : '-'; ?></td>
-                                    <td><?php echo $entry['avg_score'] ? number_format($entry['avg_score'], 2) . '%' : '-'; ?></td>
                                     <td><?php echo $entry['total_attempts'] ?? 0; ?></td>
                                 </tr>
                             <?php endif; ?>

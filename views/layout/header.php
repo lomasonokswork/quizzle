@@ -3,9 +3,6 @@ if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 
-$currentPage = $_GET['page'] ?? 'home';
-$currentAction = $_GET['action'] ?? 'index';
-
 if (!function_exists('nav_active')) {
     function nav_active($page, $action = null)
     {
@@ -31,9 +28,6 @@ if (!function_exists('nav_active')) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="public/css/home-index.css">
-    <link rel="stylesheet" href="public/css/home-play.css">
-    <link rel="stylesheet" href="public/css/home-result.css">
     <title>Quizzle - Quiz Management System</title>
 </head>
 
@@ -41,7 +35,6 @@ if (!function_exists('nav_active')) {
     <header class="site-header">
         <nav class="site-nav" aria-label="Main navigation">
             <div class="brand" aria-label="Quizzle">
-                <span class="brand-mark" aria-hidden="true">Q</span>
                 <span>Quizzle</span>
             </div>
 

@@ -1,7 +1,7 @@
 <section class="hero">
     <p class="card-kicker">Quiz dashboard</p>
     <h1>Pick a quiz and sharpen what you know.</h1>
-    <p>Browse available quizzes, review your recent scores, and jump back into practice whenever you are ready.</p>
+    <p>Browse available quizzes</p>
     <div class="hero-actions">
         <?php if (!empty($quizzes)): ?>
             <a class="btn" href="#quizzes">Browse Quizzes</a>
@@ -17,7 +17,6 @@
         <div>
             <p class="card-kicker">Available now</p>
             <h2 id="quizzes-title">Quizzes</h2>
-            <p>Choose a quiz card to begin. Your latest attempt is shown when available.</p>
         </div>
     </div>
 
@@ -37,7 +36,6 @@
                 <article class="quiz-card">
                     <span class="card-kicker">General knowledge</span>
                     <h3><?php echo htmlspecialchars($quiz['title']); ?></h3>
-                    <p>Challenge yourself with a focused set of questions and get instant scoring when you finish.</p>
 
                     <div class="quiz-stats">
                         <?php if (isset($userResultsByQuiz[$quiz['id']])): ?>
@@ -45,7 +43,6 @@
                             <span class="attempts-badge"><?php echo $attemptCount; ?> attempt<?php echo $attemptCount === 1 ? '' : 's'; ?></span>
                         <?php else: ?>
                             <span class="attempts-badge">Not attempted yet</span>
-                            <span class="difficulty-badge">Starter friendly</span>
                         <?php endif; ?>
                     </div>
 
@@ -63,14 +60,12 @@
         <div>
             <p class="card-kicker">Progress</p>
             <h2 id="history-title">Quiz History</h2>
-            <p>Recent attempts help you spot where practice is paying off.</p>
         </div>
     </div>
 
     <?php if (empty($userResults)): ?>
         <div class="empty-state">
             <h3>No attempts yet</h3>
-            <p>Start with any quiz above and your results will appear here.</p>
         </div>
     <?php else: ?>
         <div class="table-wrap">
