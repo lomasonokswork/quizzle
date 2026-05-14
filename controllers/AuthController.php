@@ -32,7 +32,7 @@ class AuthController
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['permission_level'] = $user['permission_level'];
                 $_SESSION['flash'] = ['type' => 'success', 'message' => 'Login successful'];
-                header('Location: ?page=quiz&action=list');
+                header('Location: ?page=home');
                 exit;
             } else {
                 $_SESSION['flash'] = ['type' => 'error', 'message' => 'Invalid username or password'];
@@ -71,7 +71,7 @@ class AuthController
                 exit;
             }
 
-            if (strlen($password) < 6) {
+            if (strlen($password) < 8) {
                 $_SESSION['flash'] = ['type' => 'error', 'message' => 'Password must be at least 6 characters'];
                 header('Location: ?page=register');
                 exit;

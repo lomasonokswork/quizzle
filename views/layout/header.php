@@ -30,11 +30,12 @@ if (!function_exists('nav_active')) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="public/favicon.svg">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="public/css/home-index.css">
     <link rel="stylesheet" href="public/css/home-play.css">
     <link rel="stylesheet" href="public/css/home-result.css">
-    <title>Quizzle - Quiz Management System</title>
+    <title>Quizzle</title>
 </head>
 
 <body>
